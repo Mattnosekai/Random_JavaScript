@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html>
+
+<img id="box_4" src="images/Mattnosekai_logo1.png" alt=""/>
+<img id="box_3" src="images/Sonic_Wings2.png" alt=""/>
 <img id="box_1" src="images/Plane_1.png" alt=""/>
 <img id="box_2" src="images/Aero_Shot2.png" alt=""/>
+
 <style>
 		#box_1 {
 			position: absolute;
@@ -17,7 +21,20 @@
 			width: 24px;
 			height: 87px;
 		}
-
+		#box_3 {
+			position: absolute;
+			bottom: 5%;
+			left: 70%;
+			width: 500px;
+			height: 710px;
+		}
+		#box_4 {
+			position: absolute;
+			bottom: 74%;
+			left: 75%;
+			width: 300px;
+			height: 250px;
+		}
 </style>
 <body>
 
@@ -29,7 +46,9 @@ document.getElementById("field1").value="Click Here To Start!"
 
 //todo: I need to make a main loop that is non-blocking or
 //create an async function to allow multiple shots
-
+//
+//I also need to create sprite transparency.
+ 
 var shot_sound = new Audio('images/Missile2.mp3');
 
 var d = new Date();
