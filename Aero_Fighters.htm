@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<img id="box_1" src="images/Plane_1.png" alt=""/>
+<img id="box_2" src="images/Aero_Shot2.png" alt=""/>
+<style>
+		#box_1 {
+			position: absolute;
+		 	bottom: 50%;
+		 	left: 50%;
+		 	width: 50px;
+		 	height: 63px;
+		}
+		#box_2 {
+			position: absolute;
+			bottom: 70%;
+			left: 50%;
+			width: 24px;
+			height: 87px;
+		}
+
+</style>
+<body>
+
+
+<input type="text" id="field1" onkeydown="onKeyDown()">
+
+<script>
+document.getElementById("field1").value="Click Here To Start!"
+
+//todo: I need to make a main loop that is non-blocking or
+//create an async function to allow multiple shots
+
+var shot_sound = new Audio('images/Missile2.mp3');
+
+var d = new Date();
+
+const timer1 = []; //set up timers
+timer1[1] = d.getTime();
+timer1[2] = d.getTime();
+timer1[3] = d.getTime();
+timer1[4] = d.getTime();
+
+
+var shot_counter=0;
+var shot_active2="NO";
+
+const shot_active = []; //max 4 active shots
+
+shot_active[1]="NO";
+shot_active[2]="NO";
+shot_active[3]="NO";
+shot_active[4]="NO";
+
+const shot_x = []; // x & y coords for shots
+const shot_y = [];
+
+var x = 50;
+var y = 50;
+var m = .5;
+
+var y2 = y;
+var xy = x;
+
+
+
+function sleep(ms) {
+	//this function causes a delay in milliseconds
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function update_shot(){
+if (shot_active2=="YES") //exit function if shot is already active
+	return;
+
+shot_active2="YES";
+
+	var i2;
+  y2=y;
+	x2=x;
+	y2=y2+3.5;
+	x2=x2+.5;
+
+  while(y2<=100) //loop until the shot reaches past the top of the screen
+	{
+		await sleep(5);
+		y2=y2+.5;
+    document.getElementById("box_2").style.bottom=y2+"%"
+		document.getElementById("box_2").style.left=x2+"%"
+	}
+shot_active2="NO";
+}
+
+async function update_position(direction)
+{
+	var i;
+	for (i = 0; i < 5; i++) {
+		await sleep(5);
+//updating the position in a loop with a slight delay causes smoother animation movement
+
+	switch(direction)
+	{
+	case "UP":
+  y=y+m;
+	document.getElementById("box_1").style.bottom=y+"%"
+	break;
+	case "DOWN":
+	y=y-m;
+	document.getElementById("box_1").style.bottom=y+"%"
+	break;
+	case "LEFT":
+	x=x-m;
+	document.getElementById("box_1").style.left=x+"%"
+  break;
+  case "RIGHT":
+	x=x+m;
+  document.getElementById("box_1").style.left=x+"%"
+  case "SHOT":
+
+	break;
+	}
+	}
+
+}
+
+
+function onKeyDown(event) {
+
+switch (window.event.keyCode){
+	case 37:
+	update_position("LEFT");
+  break;
+	case 38:
+	update_position("UP");
+  break;
+	case 39:
+  update_position("RIGHT");
+	break;
+	case 40:
+	update_position("DOWN");
+	break;
+	case 65:
+	update_position("SHOT");
+	shot_sound.play();
+	update_shot();
+	break;
+}
+
+document.getElementById("field1").value=window.event.keyCode
+
+
+
+}
+
+</script>
+
+
+
+</body>
+</html>

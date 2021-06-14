@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<style>
+		#box_1 { 
+			position: absolute;
+		 	bottom: 50%;
+		 	left: 50%;
+		 	width: 200px;
+		 	height: 200px;
+			background: #ee3e64;
+		}
+		
+</style>
+<body>
+
+<div id="box_1"></div>
+<script>
+var x = 50;
+var y = 50;
+function setval()
+{
+	x = x-.5;
+document.getElementById("box_1").style.bottom=x+"%"
+
+}
+function setval2()
+{
+	y = y-.5;
+document.getElementById("box_1").style.left=y+"%"
+
+}
+function setval3()
+{
+	x = x+.5;
+document.getElementById("box_1").style.bottom=x+"%"
+
+}
+function setval4()
+{
+	y = y+.5;
+document.getElementById("box_1").style.left=y+"%"
+
+}
+</script>
+
+<button type="button" onclick='javascript:setval(); '>-Y Axis</button>
+<button type="button" onclick='javascript:setval2(); '>-X Axis</button>
+<br>
+<br>
+<button type="button" onclick='javascript:setval3(); '>+Y Axis</button>
+<button type="button" onclick='javascript:setval4(); '>+X Axis</button>
+
+</body>
+</html>

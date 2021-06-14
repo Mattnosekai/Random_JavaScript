@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<img id="box_1" src="images/Mattnosekai_logo1.png" alt=""/>
+<style>
+		#box_1 {
+			position: absolute;
+		 	bottom: 50%;
+		 	left: 50%;
+		 	width: 400px;
+		 	height: 400px;
+		}
+
+</style>
+<body>
+
+
+<input type="text" id="field1" onkeydown="onKeyDown()">
+
+<script>
+
+
+
+var x = 50;
+var y = 50;
+var m = .5;
+
+
+function sleep(ms) {
+	//this function causes a delay in milliseconds
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function update_position(direction)
+{
+	var i;
+	for (i = 0; i < 5; i++) {
+		await sleep(5);
+//updating the position in a loop with a slight delay causes smoother animation movement
+
+	switch(direction)
+	{
+	case "UP":
+  y=y+m;
+	document.getElementById("box_1").style.bottom=y+"%"
+	break;
+	case "DOWN":
+	y=y-m;
+	document.getElementById("box_1").style.bottom=y+"%"
+	break;
+	case "LEFT":
+	x=x-m;
+	document.getElementById("box_1").style.left=x+"%"
+  break;
+  case "RIGHT":
+	x=x+m;
+  document.getElementById("box_1").style.left=x+"%"
+	}
+	}
+
+}
+
+
+function onKeyDown(event) {
+
+switch (window.event.keyCode){
+	case 37:
+	update_position("LEFT");
+  break;
+	case 38:
+	update_position("UP");
+  break;
+	case 39:
+  update_position("RIGHT");
+	break;
+	case 40:
+	update_position("DOWN");
+	break;
+}
+
+document.getElementById("field1").value=window.event.keyCode
+}
+
+
+
+</script>
+
+
+
+</body>
+</html>

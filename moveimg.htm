@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<img id="box_1" src="images/Mattnosekai_logo1.png" alt=""/>
+<style>
+		#box_1 {
+			position: absolute;
+		 	bottom: 50%;
+		 	left: 50%;
+		 	width: 400px;
+		 	height: 400px;
+		}
+
+</style>
+<body>
+
+<div id="box_1"></div>
+<script>
+var x = 50;
+var y = 50;
+var m = .5;
+
+function sleep(milliseconds) {
+  const date = Date.now();
+  let currentDate = null;
+  do {
+    currentDate = Date.now();
+  } while (currentDate - date < milliseconds);
+}
+
+function sleep2(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function setval()
+{
+var i;
+for (i = 0; i < 10; i++) {
+	x = x-m;
+	await sleep2(10);
+document.getElementById("box_1").style.bottom=x+"%"
+}
+}
+function setval2()
+{
+	y = y-m;
+document.getElementById("box_1").style.left=y+"%"
+
+}
+function setval3()
+{
+	x = x+m;
+document.getElementById("box_1").style.bottom=x+"%"
+
+}
+function setval4()
+{
+	y = y+m;
+document.getElementById("box_1").style.left=y+"%"
+
+}
+</script>
+
+<button type="button" onclick='javascript:setval(); '>-Y Axis</button>
+<button type="button" onclick='javascript:setval2(); '>-X Axis</button>
+<br>
+<br>
+<button type="button" onclick='javascript:setval3(); '>+Y Axis</button>
+<button type="button" onclick='javascript:setval4(); '>+X Axis</button>
+
+</body>
+</html>
